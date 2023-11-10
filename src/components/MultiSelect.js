@@ -1,9 +1,9 @@
 // MultiSelect.js
 import React, { useState } from 'react';
-import { FormControl, FormGroup, FormControlLabel, Checkbox, TextField } from '@material-ui/core';
+import { FormControl, FormGroup, FormControlLabel, Checkbox, TextField, Typography } from '@material-ui/core';
 import PropTypes from 'prop-types';
 
-const MultiSelect = ({ options, selectedValues, onChange }) => {
+const MultiSelect = ({ title, options, selectedValues, onChange }) => {
   const [otherInputVisible, setOtherInputVisible] = useState(false);
   const [otherInputValue, setOtherInputValue] = useState('');
 
@@ -24,44 +24,50 @@ const MultiSelect = ({ options, selectedValues, onChange }) => {
   };
 
   return (
-    <FormControl>
-      <FormGroup>
-        {options.map((option) => (
-          <FormControlLabel
-            key={option.value}
-            control={
-              <Checkbox
-                checked={selectedValues.includes(option.value)}
-                onChange={() => handleCheckboxChange(option.value)}
-                name={option.label}
-              />
-            }
-            label={option.label}
-          />
-        ))}
-        {otherInputVisible && (
-          <TextField
-            id="other-input"
-            label="Other (please elaborate)"
-            variant="outlined"
-            fullWidth
-            value={otherInputValue}
-            onChange={handleOtherInputChange}
-            className="mb-4"
-            InputProps={{
-              className: 'border rounded w-full p-2',
-            }}
-            InputLabelProps={{
-              className: 'text-gray-700',
-            }}
-          />
-        )}
-      </FormGroup>
-    </FormControl>
+    <div className='mb-4'>
+      <FormControl>
+        <Typography variant="h6" gutterBottom>
+          {title}
+        </Typography>
+        <FormGroup>
+          {options.map((option) => (
+            <FormControlLabel
+              key={option.value}
+              control={
+                <Checkbox
+                  checked={selectedValues.includes(option.value)}
+                  onChange={() => handleCheckboxChange(option.value)}
+                  name={option.label}
+                />
+              }
+              label={option.label}
+            />
+          ))}
+          {otherInputVisible && (
+            <TextField
+              id="other-input"
+              label="Other (please elaborate)"
+              variant="outlined"
+              fullWidth
+              value={otherInputValue}
+              onChange={handleOtherInputChange}
+              className="mb-4"
+              InputProps={{
+                className: 'border rounded w-full p-2',
+              }}
+              InputLabelProps={{
+                className: 'text-gray-700',
+              }}
+            />
+          )}
+        </FormGroup>
+      </FormControl>
+    </div>
   );
 };
 
 MultiSelect.propTypes = {
+  title: PropTypes.string.isRequired,
   options: PropTypes.arrayOf(
     PropTypes.shape({
       value: PropTypes.string.isRequired,

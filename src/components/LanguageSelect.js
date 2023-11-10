@@ -16,11 +16,17 @@ const LanguageSelectSection = () => {
   const [selectedLanguage, setSelectedLanguage] = useState('');
 
   return (
-    <div className="mb-6">
+    <div className="mb-4">
       <SingleSelect
         options={[{ value: '', label: t('Choose your language') }, ...languageOptions]}
         selectedValue={selectedLanguage || ''}
         onChange={(selectedValue) => setSelectedLanguage(selectedValue)}
+        InputProps={{
+          className: 'border rounded w-full p-2 mb-4',
+        }}
+        InputLabelProps={{
+          className: 'text-gray-700',
+        }}
       />
     </div>
   );

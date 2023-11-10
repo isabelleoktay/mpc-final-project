@@ -1,17 +1,32 @@
 // RadioSelect.js
 import React from 'react';
-import { FormControl, RadioGroup, FormControlLabel, Radio } from '@material-ui/core';
+import { FormControl, RadioGroup, FormControlLabel, Radio, Typography } from '@material-ui/core';
 import PropTypes from 'prop-types';
 
 const RadioSelect = ({ label, options, selectedValue, onChange }) => {
   return (
-    <FormControl component="fieldset">
-      <RadioGroup aria-label={label} name={label} value={selectedValue} onChange={(event) => onChange(event.target.value)}>
-        {options.map((option) => (
-          <FormControlLabel key={option.value} value={option.value} control={<Radio />} label={option.label} />
-        ))}
-      </RadioGroup>
-    </FormControl>
+    <div className="mb-4">
+      <FormControl component="fieldset">
+        <Typography variant="h6" gutterBottom>
+          {label}
+        </Typography>
+        <RadioGroup 
+          aria-label={label} 
+          name={label} 
+          value={selectedValue} 
+          onChange={(event) => onChange(event.target.value)}
+          InputProps={{
+            className: 'border rounded w-full p-2 mb-4',
+          }}
+          InputLabelProps={{
+            className: 'text-gray-700',
+          }}>
+          {options.map((option) => (
+            <FormControlLabel key={option.value} value={option.value} control={<Radio />} label={option.label} />
+          ))}
+        </RadioGroup>
+      </FormControl>
+    </div>
   );
 };
 

@@ -114,7 +114,7 @@ const Questionnaire = () => {
   ]
 
   return (
-    <div className='container mx-auto p-4 max-w-screen-md' >
+    <div className='max-w-md mx-auto mt-8 p-4 bg-white shadow-md rounded-md'>
       <LanguageSelectSection />
 
       {/* Reusable TextInput for First Name */}
@@ -166,6 +166,7 @@ const Questionnaire = () => {
 
       {/* Custom MultiSelect for Hearing Impairments */}
       <MultiSelect
+        title={t('Do you suffer from any sort of hearing impairment?')}
         options={hearingImpairmentsOptions}
         selectedValues={hearingImpairments}
         onChange={handleHearingImpairmentsChange}

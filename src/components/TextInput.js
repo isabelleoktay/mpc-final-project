@@ -12,9 +12,8 @@ const TextInput = ({ id, label, value, onChange }) => {
       fullWidth
       value={value}
       onChange={onChange}
-      className="mb-4"
       InputProps={{
-        className: 'border rounded w-full p-2',
+        className: 'border rounded w-full p-2 mb-4',
       }}
       InputLabelProps={{
         className: 'text-gray-700',
